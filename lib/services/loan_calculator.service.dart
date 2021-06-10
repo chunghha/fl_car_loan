@@ -1,4 +1,4 @@
-import 'dart:math';
+import 'dart:math' as math;
 
 double _rounding(double number, {int decimals = 2}) {
   // round numbers to two decimal places
@@ -10,7 +10,7 @@ double calcMonthlyPayment(
     double interestRate = 3.11,
     int loanMonths = 60}) {
   var _monthlyRate = interestRate / 100 / 12;
-  var _x = pow(1 + _monthlyRate, loanMonths);
+  var _x = math.pow(1 + _monthlyRate, loanMonths);
 
   return _rounding((loanAmount * _x * _monthlyRate) / (_x - 1));
 }
