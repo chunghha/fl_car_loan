@@ -8,19 +8,45 @@ import '../widgets/widgets.index.dart';
 class MonthlyCostPage extends HookWidget {
   const MonthlyCostPage({Key? key}) : super(key: key);
 
-  _getMonthlyPayment(double loanAmount, double interestRate, int loanMonths) {
+  _getMonthlyPayment(
+      TextEditingController loanAmountController,
+      TextEditingController interestRateController,
+      TextEditingController loanMonthsController) {
+    var _loanAmount = loanAmountController.text.isNotEmpty
+        ? double.parse(loanAmountController.text)
+        : 0.00;
+    var _interestRate = interestRateController.text.isNotEmpty
+        ? double.parse(interestRateController.text)
+        : 0.00;
+    var _loanMonths = loanMonthsController.text.isNotEmpty
+        ? int.parse(loanMonthsController.text)
+        : 0;
+
     return calcMonthlyPayment(
-      loanAmount: loanAmount,
-      interestRate: interestRate,
-      loanMonths: loanMonths,
+      loanAmount: _loanAmount,
+      interestRate: _interestRate,
+      loanMonths: _loanMonths,
     ).toString();
   }
 
-  _getTotalCost(double loanAmount, double interestRate, int loanMonths) {
+  _getTotalCost(
+      TextEditingController loanAmountController,
+      TextEditingController interestRateController,
+      TextEditingController loanMonthsController) {
+    var _loanAmount = loanAmountController.text.isNotEmpty
+        ? double.parse(loanAmountController.text)
+        : 0.00;
+    var _interestRate = interestRateController.text.isNotEmpty
+        ? double.parse(interestRateController.text)
+        : 0.00;
+    var _loanMonths = loanMonthsController.text.isNotEmpty
+        ? int.parse(loanMonthsController.text)
+        : 0;
+
     return calcTotalCost(
-      loanAmount: loanAmount,
-      interestRate: interestRate,
-      loanMonths: loanMonths,
+      loanAmount: _loanAmount,
+      interestRate: _interestRate,
+      loanMonths: _loanMonths,
     ).toString();
   }
 
@@ -58,14 +84,14 @@ class MonthlyCostPage extends HookWidget {
               InterestRateInput(controller: _interestRateController),
               LoanPeriodInput(controller: _loanPeriodController),
               Text('Total Cost of Car Loan: ${_getTotalCost(
-                double.parse(_loanAmountController.text),
-                double.parse(_interestRateController.text),
-                int.parse(_loanPeriodController.text),
+                _loanAmountController,
+                _interestRateController,
+                _loanPeriodController,
               )}'),
               Text('Monthly Payment: ${_getMonthlyPayment(
-                double.parse(_loanAmountController.text),
-                double.parse(_interestRateController.text),
-                int.parse(_loanPeriodController.text),
+                _loanAmountController,
+                _interestRateController,
+                _loanPeriodController,
               )}'),
             ],
           ),
