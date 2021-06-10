@@ -27,8 +27,22 @@ class MonthlyCostPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final _loanAmountController = useTextEditingController(text: '25000.00');
+    final _loanAmountUpdate = useValueListenable(_loanAmountController);
+    useEffect(() {
+      _loanAmountController.text = _loanAmountUpdate.text;
+    }, [_loanAmountController]);
+
     final _interestRateController = useTextEditingController(text: '3.11');
+    final _interestRateUpdate = useValueListenable(_interestRateController);
+    useEffect(() {
+      _interestRateController.text = _interestRateUpdate.text;
+    }, [_interestRateController]);
+
     final _loanPeriodController = useTextEditingController(text: '60');
+    final _loanPeriodUpdate = useValueListenable(_loanPeriodController);
+    useEffect(() {
+      _loanPeriodController.text = _loanPeriodUpdate.text;
+    }, [_loanPeriodController]);
 
     return Column(
       children: [
